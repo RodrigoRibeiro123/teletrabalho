@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acidentes de Trabalho</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<header class="px-4 py-4 flex shrink-0 bg-black">
+    <div>
+        <img width="100px" class="h-16 w-16" src="assets/download.webp"></img>
+    </div>
+</header>
+<body>
+    <header>
+        <h1>Acidentes de Trabalho</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="pausas-programadas.html">Pausas Programadas</a></li>
+                <li><a href="riscos.html">Riscos Profissionais e Psicossociais</a></li>
+                <li><a href="salubridade-laboral.html">Salubridade Laboral</a></li>
+                <li><a href="avaliacao-controlo-riscos.html">Avaliação e Controlo de Riscos</a></li>
+                <li><a href="gestao-isolamento.html">Gestão do Isolamento</a></li>
+                <li><a href="Quiz.html">Quiz</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Acidentes de Trabalho no Teletrabalho</h2>
+        <p>Acidentes de trabalho podem ocorrer mesmo em casa. É crucial adotar práticas seguras e organizar o espaço de trabalho para evitar incidentes.</p>
+        <div class="banner_slider">
+            <div class="slider">
+                <img id="img-1"  src="assets/acidentes-trab.webp" alt="img1">
+                <img id="img-2" src="assets/maposturasaibaoqueeecomoevitarblogimg02.webp" alt="img2">
+                <img id="img-3" src="assets/sintomas-depressao-1200x680.webp" alt="img3">
+            </div>
+            <div class="navegation-button">
+                <span class="dot active" onclick="changeSlide(0)"></span>
+                <span class="dot " onclick="changeSlide(1)"></span>
+                <span class="dot " onclick="changeSlide(2)"></span>
+            </div>
+        </div>
+        
+            <div class="navegation-button">
+                <span class="dot active" onclick="changeSlide(0)"></span>
+                <span class="dot " onclick="changeSlide(1)"></span>
+                <span class="dot " onclick="changeSlide(2)"></span>
+            </div>
+        </div>
+    </main>
+    <script>
+    
+        $("#menu").click(function() {
+        let nav = $("nav")
+        if(nav.is(":visible")){
+          nav.hide({direction:"top"}, 100);
+        } else{
+          nav.show({direction:"bottom"}, 100);
+        }
+      })
+    
+    
+    </script>
+    <!--end jquery----------------------------------------------------------------------------------------------------------------------------------->
+    <script>
+    var imgs = document.querySelectorAll(".slider img");
+    var dots = document.querySelectorAll(".dot");
+    console.log(dots)
+    var currentImg = -1;
+    const interval = 5000;
+    
+    var slideTimer = null
+    slidetimer()
+    function slidetimer() {
+      const date = new Date();
+      var i = currentImg+1
+      i %= imgs.length
+      console.log(date.getMinutes() + ":" + date.getSeconds() + " - SlideTime() " + i)
+      changeSlide(i)
+      if(slideTimer == null) {
+        slideTimer = setInterval(slidetimer, interval)  
+      }
+    }
+    function dot_changeSlide(n) {
+      const date = new Date();
+      clearInterval(slideTimer)
+      console.log(date.getMinutes() + ":" + date.getSeconds() + " - Dot" + (n+1) + " clicked")
+      changeSlide(n)
+      slideTimer = setInterval(slidetimer, interval)
+    }
+    function changeSlide(n) {
+      for(var i = 0; i < imgs.length; i++) {
+        imgs[i].style.opacity = 0;
+        if(dots[i] != null) {
+          dots[i].className = dots[i].className.replace(" active", "");
+        }
+      }
+      currentImg = n;
+      imgs[currentImg].style.opacity = 1;
+      dots[currentImg].className += " active";
+    }
+    
+    </script>
+    </main>
+    
+
+    
+</body>
+</html>
